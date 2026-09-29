@@ -43,7 +43,6 @@ label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
 input,select{width:100%;padding:14px 15px;border:1px solid var(--ln);border-radius:11px;font:inherit;font-size:16px;color:var(--ink);background:#fff;-webkit-appearance:none;appearance:none}
 select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23001d49' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 15px center;padding-right:40px}
 input:focus,select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(252,191,73,.45)}
-.opt{text-transform:none;letter-spacing:0;font-weight:400}
 
 .btn{display:block;width:100%;margin-top:6px;background:var(--gold);color:var(--navy);border:none;padding:17px;border-radius:12px;font-weight:800;font-size:16px;cursor:pointer;text-decoration:none;text-align:center;transition:background .15s}
 .btn:hover{background:var(--gold-dk)}
@@ -91,7 +90,7 @@ input:focus,select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 
       <div><label for="f-addr">Property address</label><input id="f-addr" name="property_address" placeholder="123 Main St, Livermore" autocomplete="street-address" required></div>
       <div><label for="f-name">Your name</label><input id="f-name" name="name" placeholder="First &amp; last" autocomplete="name" required></div>
       <div><label for="f-email">Email</label><input id="f-email" type="email" name="email" placeholder="you@email.com" autocomplete="email" required></div>
-      <div><label for="f-phone">Mobile <span class="opt">(optional)</span></label><input id="f-phone" type="tel" name="phone" placeholder="(555) 555-5555" autocomplete="tel"></div>
+      <div><label for="f-phone">Mobile</label><input id="f-phone" type="tel" name="phone" placeholder="(555) 555-5555" autocomplete="tel" pattern="[0-9\s\(\)\+\.\-]{10,}" title="Please enter your 10-digit mobile number." required></div>
       <div><label for="f-time">Any thoughts of selling?</label>
         <select id="f-time" name="timeline">
           <option>Just curious about the value</option>
@@ -137,7 +136,7 @@ input:focus,select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 
       "Address: "+d.get("property_address"),
       "Name: "+d.get("name"),
       "Email: "+d.get("email"),
-      "Phone: "+(d.get("phone")||""),
+      "Phone: "+d.get("phone"),
       "Timeline: "+d.get("timeline")
     ].join("\r\n");
     location.href="mailto:sam@samyusufi.com?subject="+encodeURIComponent("Home value request: "+d.get("property_address"))+"&body="+encodeURIComponent(body);
